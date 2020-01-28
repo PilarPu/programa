@@ -60,7 +60,7 @@ summary: "We do a walkthrough the nbdev tutorial so that we understand how it wo
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Edit-settings.ini">Edit settings.ini<a class="anchor-link" href="#Edit-settings.ini">&#182;</a></h3><p>Edit the file directly in GitHub: uncomment and fill the first mandatory fields.</p>
+<h3 id="Edit-settings.ini">Edit settings.ini<a class="anchor-link" href="#Edit-settings.ini">&#182;</a></h3><p>Edit the file directly in GitHub: uncomment and fill the first mandatory fields. It is important that <strong>lib_name is the same as the repo</strong> to prevent problems afterwards with the docs.</p>
 <p>{% include image.html file="/nbdev_metatuto/images/edit_settingsini.png" %}</p>
 <p>Commit the changes with whatever message you feel like providing to yourself or the future collaborators of the repo.</p>
 
@@ -115,7 +115,7 @@ summary: "We do a walkthrough the nbdev tutorial so that we understand how it wo
     <span class="s2">&quot;Enthusiastically say hi to someone&quot;</span>
     <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;Hii {to}!&#39;</span>
 </pre></div>
-<p>Since I put <code>#export</code> also in the tutorial, we can see this function right below.</p>
+<p>Since I put <code>#export</code> also in the tutorial, we can see the function documentation right below.</p>
 
 </div>
 </div>
@@ -146,7 +146,7 @@ summary: "We do a walkthrough the nbdev tutorial so that we understand how it wo
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Feel free to add a markdown description. The string will be the function descrption in the documentation.</p>
+<p>Feel free to add a markdown description too. The string in the source code becomes function descrption in the documentation, as you can see right above.</p>
 <p>We can also add tests. It is always good to have them in the documentations as they show new users what behavior they should expect. For that we will need to import <code>fastcore</code>. Since we don't want it to be included in the docs, we can just either put it in the previous cell with</p>
 <div class="highlight"><pre><span></span><span class="c1">#hide</span>
 <span class="kn">from</span> <span class="nn">nbdev.showdoc</span> <span class="kn">import</span> <span class="o">*</span>
@@ -246,7 +246,76 @@ docs/images/
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Continuous-integration-(CI)">Continuous integration (CI)<a class="anchor-link" href="#Continuous-integration-(CI)">&#182;</a></h3><p>Github will check that everything is okey. Edit <code>.github/workflows/main.yml</code> if you don't like it (I never tried).</p>
-<p>Go to the commits and see whether we had any issue building the docs. <strong>Spoiler alert</strong> we did. We always do. Click the cross to see what went wrong.</p>
+<p>Go to the commits and see whether we had any issue building the docs. <strong>Spoiler alert</strong> we did. We always do. Click the cross to see what went wrong. 
+{% include image.html file="/nbdev_metatuto/images/failed_push.png" %}</p>
+<p>The problem is that we did not specify the dependencies of our library in <code>settings.ini</code>. Add the library names with space separations:</p>
+<div class="highlight"><pre><span></span><span class="c1"># Optional. Same format as setuptools requirements</span>
+<span class="n">requirements</span> <span class="o">=</span> <span class="n">fastcore</span>
+<span class="c1"># Optional. Same format as setuptools console_scripts</span>
+<span class="c1"># console_scripts =</span>
+</pre></div>
+<p>Commit and push again!</p>
+<p>{% include image.html file="/nbdev_metatuto/images/successful_push.png" %}</p>
+<p>GREAT!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="View-docs">View docs<a class="anchor-link" href="#View-docs">&#182;</a></h3><p>Have a look at the docs clicking on the link that we generated at the beginning!</p>
+<p>{% include image.html file="/nbdev_metatuto/images/first_doc.png" %}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Classes">Classes<a class="anchor-link" href="#Classes">&#182;</a></h2><p>Add a class to <code>00_core.ipynb</code> like:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SoothSayer</span><span class="p">:</span>
+    <span class="s2">&quot;Yell hi at someone until they are annoyed enough to either reply or flee&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">to</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">to</span> <span class="o">=</span> <span class="n">to</span>
+    <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="n">say_hi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="SoothSayer" class="doc_header"><code>class</code> <code>SoothSayer</code><a href="https://github.com/fastai/nbdev_metatuto/tree/master/nbdev_metatuto/tutorial.py#L11" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>SoothSayer</code>(<strong><code>to</code></strong>)</p>
+</blockquote>
+<p>Yell hi at someone until they are annoyed enough to either reply or flee</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that this time we can see the source code because I included <code>#exports</code>. Now the method documentation does not appear</p>
 
 </div>
 </div>

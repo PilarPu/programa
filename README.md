@@ -12,7 +12,7 @@ This is mainly for me to not fuck up during my live tutorial and get familiar wi
 
 We can't really screw anything up. There is only one function so far:
 
-```python
+```
 say_hi("Bitz")
 ```
 
