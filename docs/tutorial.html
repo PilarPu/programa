@@ -234,11 +234,19 @@ docs/images/
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Commit-to-GitHub">Commit to GitHub<a class="anchor-link" href="#Commit-to-GitHub">&#182;</a></h2><p>Commit! We can see all the changes with <code>git status</code>. To proceed run <code>git add -A</code> and commit with <code>git commit -am 'commit message'</code>.</p>
+<h2 id="Commit-to-GitHub">Commit to GitHub<a class="anchor-link" href="#Commit-to-GitHub">&#182;</a></h2><p>Commit! We can see all the changes with <code>git status</code>. To proceed run <code>git add -A</code>, commit with <code>git commit -am 'commit message'</code> and poooosh! <code>git push</code>.</p>
 <p>Notice that the <code>__init__.py</code> is created automatically by default, but we can edit it freely. For example, if we add the line</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">.core</span> <span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 <p>we can then just import the library without specifying the core in our index.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Continuous-integration-(CI)">Continuous integration (CI)<a class="anchor-link" href="#Continuous-integration-(CI)">&#182;</a></h3><p>Github will check that everything is okey. Edit <code>.github/workflows/main.yml</code> if you don't like it (I never tried).</p>
+<p>Go to the commits and see whether we had any issue building the docs. <strong>Spoiler alert</strong> we did. We always do. Click the cross to see what went wrong.</p>
 
 </div>
 </div>
