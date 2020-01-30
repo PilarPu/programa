@@ -70,6 +70,7 @@ summary: "We do a walkthrough the nbdev tutorial so that we understand how it wo
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="GitHub-Pages">GitHub Pages<a class="anchor-link" href="#GitHub-Pages">&#182;</a></h3><p>With <a href="https://pages.github.com/">GitHub pages</a> we can have our automatically-generated documentation by nbdev hosted in a free server based on <a href="https://jekyllrb.com/">jekyll</a>.</p>
+<p>It is interesting to mention the <a href="#jekyll_installation">jekyll installation</a>, as it takes a while.</p>
 
 </div>
 </div>
@@ -98,7 +99,7 @@ summary: "We do a walkthrough the nbdev tutorial so that we understand how it wo
 <li>In the first cell <code># default_exp module_name</code> tells nbdev to export the notebook as <code>lib_name.module_name.py</code></li>
 <li><code>#hide</code> prevents the cell from appearing in the documentation and excludes it from the module</li>
 <li><code>#export</code> includes the cell in the exported package and the documentation</li>
-<li><code>#exports</code> includes the cell in the package and the source code in the documentation</li>
+<li><code>#exports</code> includes the cell in the package and the source code in the documentation (s stands for source)</li>
 <li>Not putting anything will only include the cell in the documentations</li>
 </ul>
 <p>These comments need to be always in the first line of the cell.</p>
@@ -213,6 +214,10 @@ Converted index.ipynb.
 <h2 id="Index">Index<a class="anchor-link" href="#Index">&#182;</a></h2><p><code>index.ipynb</code> will be the source for the documentation home page and the project readme.</p>
 <p>We need to change the first cell to import our library. Change the name of the library to yours, e.g., <code>nbdev_metatuto.core</code> and <code>nbdev_metatuto.tutorial</code> in my case. Write down a brief description and provide a function example to ensure that it works.</p>
 <p>{% include image.html file="/nbdev_metatuto/images/index_edit.png" %}</p>
+<p>It is also extremely useful to use <code>%autoreload</code> to avoid resetting the kernel every time we change the package.</p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
+<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
+</pre></div>
 
 </div>
 </div>
@@ -284,7 +289,7 @@ docs/images/
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SoothSayer</span><span class="p">:</span>
     <span class="s2">&quot;Yell hi at someone until they are annoyed enough to either reply or flee&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">to</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">to</span> <span class="o">=</span> <span class="n">to</span>
-    <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="n">say_hi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="n">say_hi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -315,8 +320,205 @@ docs/images/
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Notice that this time we can see the source code because I included <code>#exports</code>.</p>
-<p>Now the method documentation does not appear for classes unless we explicitly indicate it with <code>show_doc()</code> from <code>nbdev.showdoc</code> (already imported).</p>
+<p>Notice that this time we can see the source code and the class documentation because I included <code>#exports</code>. However, the method documentation does not appear for classes unless we explicitly indicate it with <code>show_doc()</code> from <code>nbdev.showdoc</code> (already imported).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="SoothSayer.say" class="doc_header"><code>SoothSayer.say</code><a href="https://github.com/fastai/nbdev_metatuto/tree/master/nbdev_metatuto/tutorial.py#L20" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>SoothSayer.say</code>()</p>
+</blockquote>
+<p>Do your thing, stalker!</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It would be nice to include a docstring better just as follows:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SoothSayer</span><span class="p">:</span>
+    <span class="s2">&quot;Yell hi at someone until they are annoyed enough to either reply or flee&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">to</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">to</span> <span class="o">=</span> <span class="n">to</span>
+    <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
+        <span class="s2">&quot;Do your thing, stalker!&quot;</span>
+        <span class="k">return</span> <span class="n">say_hi</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="SoothSayer" class="doc_header"><code>class</code> <code>SoothSayer</code><a href="https://github.com/fastai/nbdev_metatuto/tree/master/nbdev_metatuto/tutorial.py#L11" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>SoothSayer</code>(<strong><code>to</code></strong>)</p>
+</blockquote>
+<p>Yell hi at someone until they are annoyed enough to either reply or flee</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="SoothSayer.say" class="doc_header"><code>SoothSayer.say</code><a href="https://github.com/fastai/nbdev_metatuto/tree/master/nbdev_metatuto/tutorial.py#L20" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>SoothSayer.say</code>()</p>
+</blockquote>
+<p>Do your thing, stalker!</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is always a good idea to put titles and sections that will make the library more readable.</p>
+<p>{% include image.html file="/nbdev_metatuto/images/sections.png" %}</p>
+<p>Also, remember to provide examples and tests of the classes and their methods.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sayer</span> <span class="o">=</span> <span class="n">SoothSayer</span><span class="p">(</span><span class="s2">&quot;Maciej&quot;</span><span class="p">)</span>
+<span class="n">sayer</span><span class="o">.</span><span class="n">say</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;Hii Maciej!&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Export-cell">Export cell<a class="anchor-link" href="#Export-cell">&#182;</a></h2><p>Instead of going to the terminal to export our notebooks with <code>nbdev_build_lib</code> we can execute the command from any cell with</p>
+<div class="highlight"><pre><span></span><span class="c1">#hide</span>
+<span class="kn">from</span> <span class="nn">nbdev.export</span> <span class="kn">import</span> <span class="n">notebook2script</span>
+<span class="n">notebook2script</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nbdev.export</span> <span class="k">import</span> <span class="n">notebook2script</span>
+<span class="n">notebook2script</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Converted 00_tutorial.ipynb.
+Converted 01_core.ipynb.
+Converted index.ipynb.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Run-tests">Run tests<a class="anchor-link" href="#Run-tests">&#182;</a></h2><p>We can also run all the tests in all notebooks in parallel from the terminal with <code>nbdev_test_nbs</code>. If something goes wrong, we get a traceback to the errors. Be careful with what we <code>#export</code>!</p>
+<div class="highlight"><pre><span></span>$ nbdev_test_nbs 
+testing: /home/brequena/GitHub/nbdev_metatutorial/00_tutorial.ipynb
+testing: /home/brequena/GitHub/nbdev_metatutorial/01_core.ipynb
+testing: /home/brequena/GitHub/nbdev_metatutorial/index.ipynb
+All tests are passing!
+</pre></div>
+<p>To prevent any issue with nbs that we are currently working on and are not finished yet, we can exclude them from the test by adding <code>_</code> at the beginning of the name, e.g., <code>_core.ipynb</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="jekyll_installation"></a></p>
+<h2 id="Local-docs">Local docs<a class="anchor-link" href="#Local-docs">&#182;</a></h2><p>We can see the documentation without having to push and checking the github page if we <a href="https://jekyllrb.com/docs/installation/ubuntu/">install jekyll</a> to generate the docs locally. It can take a while to install. While following the installation guide, it is important to run <code>sudo apt-get update</code> and then <code>sudo apt-get upgrade</code> as well as <code>gem update</code> before doing <code>gem install bundler</code> or it might be that the bundler is outdated (version needs to be $&gt;2$). I didn't fooken manage tho.</p>
+<p>With jekyll installed, go to the <code>docs</code> directory and run <code>bundle install</code>. Then, run <code>make docs_serve</code>, which will launch a docs server on port 4000.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="More-functionalities">More functionalities<a class="anchor-link" href="#More-functionalities">&#182;</a></h2><p>There are a lot more functionalities, such as setting up requirements (we already saw it), set up console scripts, upload to pypi, etc.</p>
 
 </div>
 </div>

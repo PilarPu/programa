@@ -10,7 +10,7 @@ This is mainly for me to not fuck up during my live tutorial and get familiar wi
 
 ## How to use
 
-We can't really screw anything up. There is only one function so far:
+We can't really screw anything up. There is only one function and one class so far:
 
 ```python
 say_hi("Bitz")
@@ -20,5 +20,17 @@ say_hi("Bitz")
 
 
     'Hii Bitz!'
+
+
+
+```python
+ss = SoothSayer("Emilio")
+ss.say()
+```
+
+
+
+
+    'Hii Emilio!'
 
 

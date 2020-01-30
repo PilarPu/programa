@@ -9,6 +9,8 @@ def say_hi(to):
 
 # Cell
 class SoothSayer:
-    "Yell hi at someone until they are annoyed enough to either reply or flee"
+    "Yell hi at someone until they are annoyed enough to either reply or flee. It calls `say_hi`"
     def __init__(self,to): self.to = to
-    def say(self): say_hi(self.to)
+    def say(self):
+        "Do your thing, stalker!"
+        return say_hi(self.to)
