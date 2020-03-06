@@ -2,7 +2,7 @@
 > Supertutorial of the tutorial for nbdev :D
 
 
-This is mainly for me to not fuck up during my live tutorial and get familiar with nbdev. 
+This is mainly a guide for me to follow during my live tutorial and, at the same time, get familiar with nbdev while writing it. 
 
 ## Install
 
